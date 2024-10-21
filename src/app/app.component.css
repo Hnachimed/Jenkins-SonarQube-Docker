@@ -1,0 +1,19 @@
+.footer {
+  background-color: #2d2d2d;
+}
+
+.footer a {
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+.footer .input-group .form-control {
+  border-radius: 5px 0 0 5px;
+}
+
+.footer .input-group .btn {
+  border-radius: 0 5px 5px 0;
+}

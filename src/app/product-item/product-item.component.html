@@ -1,0 +1,33 @@
+<div class="card-body d-flex flex-column p-3" style="justify-content: space-between; border: 1px solid #e0e0e0; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);">
+  <div class="text-center mb-3">
+    <img
+      [src]="produit.images[0]"
+      alt="{{ produit.nom }}"
+      class="img-fluid"
+      style="max-height: 200px; object-fit: cover; border-radius: 8px;"
+    />
+  </div>
+
+  <h4 class="card-title text-dark" style="font-weight: 500;">{{ produit.nom }}</h4>
+  <h6 class="text-secondary">{{ produit.category }}</h6>
+  <p class="text-muted" style="font-size: 0.9rem; height: 60px; overflow: hidden;">{{ produit.description }}</p>
+
+  <!-- Affichage de la quantité restante -->
+  <p class="text-muted" style="font-size: 0.9rem;">Quantité restante: {{ produit.stock }} unit(s)</p>
+
+  <div class="d-flex justify-content-between align-items-center mt-3">
+    <h5 class="text-dark mb-0" style="font-weight: 600;">Prix : {{ produit.price | currency: 'EUR' }}</h5>
+    <button
+      (click)="addToPanier(produit); $event.stopPropagation()"
+      class="btn btn-light border"
+      style="border-radius: 50%; padding: 8px 12px; box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);"
+      title="Ajouter au panier"
+      [disabled]="produit.stock <= 0" ><!-- Désactiver le bouton si le stock est épuisé -->
+
+    <i class="fas fa-shopping-cart"></i>
+    </button>
+  </div>
+
+  <!-- Message lorsque le produit est épuisé -->
+  <div *ngIf="produit.stock <= 0" class="text-danger mt-2">Ce produit est épuisé.</div>
+</div>

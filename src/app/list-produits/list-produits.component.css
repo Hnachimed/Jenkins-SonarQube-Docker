@@ -1,0 +1,97 @@
+/* Style de la page principale */
+.page-background {
+  background-color: #f8f9fa; /* Couleur de fond douce */
+  padding: 60px;
+  margin-top: 60px;
+}
+
+/* Style des cartes de produits */
+.product-card {
+  background-color: white;
+  border: none;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+  height: auto;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Style de la barre de recherche */
+.search-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.search-bar input {
+  width: 350px; /* Taille augmentée pour plus de visibilité */
+  padding: 12px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  transition: border-color 0.3s;
+}
+
+.search-bar input:focus {
+  border-color: #1E90FF;
+}
+
+.search-bar button {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  background-color: #1E90FF; /* Couleur principale */
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.search-bar button:hover {
+  background-color: #FF4500;
+  transform: scale(1.05);
+}
+
+/* Style du filtre de catégorie */
+.category-filter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.category-filter select {
+  width: 350px;
+  padding: 12px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  background-color: white;
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+
+.category-filter select:focus {
+  border-color: #1E90FF;
+}
+
+/* Style pour la disposition des cartes sur des écrans plus larges */
+@media (min-width: 992px) {
+  .product-card {
+    width: 100%;
+  }
+}
+
+/* Effets de transition */
+.product-card img {
+  transition: transform 0.3s;
+}
+
+.product-card:hover img {
+  transform: scale(1.1);
+}

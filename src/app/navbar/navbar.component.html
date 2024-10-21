@@ -1,0 +1,71 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold text-primary" routerLink="/home" style="font-size: 24px;">
+      EMI <span class="text-secondary">STORE</span>
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link text-dark fw-bold" routerLink="/listproduits" style="font-size: 18px;">Products</a>
+        </li>
+      </ul>
+
+      <!-- Barre de recherche large avec un sélecteur de catégories à gauche -->
+      <div class="d-flex mx-auto align-items-center" style="width: 70%;">
+        <div class="category-filter me-2" style="min-width: 80px;">
+          <select [(ngModel)]="selectedCategory" (change)="filterProductsByCategory()" class="form-select" style="width: 80px; height: 45px;">
+            <option value="All">All</option>
+            <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+          </select>
+        </div>
+
+        <!-- Barre de recherche avec le symbole de recherche à droite à l'intérieur -->
+        <div class="search-bar position-relative" style="flex-grow: 1;">
+          <input
+            [(ngModel)]="searchQuery"
+            (ngModelChange)="search()"
+            placeholder="Que cherchez-vous ?"
+            class="form-control"
+            style="height: 45px; border-radius: 50px; padding-left: 20px; padding-right: 45px;"
+          />
+          <button class="btn position-absolute" (click)="onSearch()" style="right: 10px; top: 50%; transform: translateY(-50%); background-color: #FF5A1F; border-radius: 50%; padding: 5px;">
+            <i class="bi bi-search text-white"></i>
+          </button>
+        </div>
+      </div>
+
+
+      <!-- Boutons de connexion, commande et panier -->
+      <div class="d-flex align-items-center ms-3">
+        <button class="btn btn-link text-dark me-3" (click)="isAuth() ? handleLogout() : handleLogin()">
+          <i class="bi bi-person-circle me-1"></i> {{ isAuth() ? 'Logout' : 'Login' }}
+        </button>
+
+        <!-- Bouton Order -->
+        <button class="btn btn-outline-primary position-relative me-3"  routerLink="/order">
+          <i class="bi bi-box-seam"></i> Order
+        </button>
+
+        <!-- Bouton Panier -->
+        <button class="btn btn-outline-primary position-relative" routerLink="/panier">
+          <i class="bi bi-cart3"></i>
+          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+            3 <!-- Nombre d'articles dans le panier -->
+          </span>
+        </button>
+
+      </div>
+    </div>
+  </div>
+</nav>

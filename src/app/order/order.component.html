@@ -1,0 +1,30 @@
+<div class="order-container">
+  <h2>Résumé de votre commande</h2>
+
+  <table class="table">
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>Produit</th>
+      <th>Prix Unitaire</th>
+      <th>Quantité</th>
+      <th>Total</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of lignePanier; index as i">
+      <td>{{ i + 1 }}</td>
+      <td>{{ item.produit.nom }}</td>
+      <td>{{ item.produit.price }} DH</td>
+      <td>{{ item.qte }}</td>
+      <td>{{ item.produit.price * item.qte }} DH</td>
+    </tr>
+    </tbody>
+  </table>
+
+  <h3>Total: {{ total }} DH</h3>
+
+  <button class="btn btn-success" (click)="confirmerCommande()">
+    Confirmer la Commande
+  </button>
+</div>

@@ -1,0 +1,11 @@
+<div class="page-background">
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-md-3 mb-4" *ngFor="let produit of produits">
+        <div class="product-card">
+          <app-product-item [produit]="produit" (click)="goToProductDetails(produit.id)"></app-product-item>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

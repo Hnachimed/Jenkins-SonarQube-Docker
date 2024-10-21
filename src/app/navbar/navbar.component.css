@@ -1,0 +1,50 @@
+.logo {
+  display: inline-block;
+  text-align: center;
+  padding: 5px 20px;
+  border-radius: 14px;
+  text-transform: uppercase;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  line-height: 1.2;
+  vertical-align: middle;
+}
+
+.logo-top {
+  display: block;
+  font-size: 24px;
+}
+
+.logo-bottom {
+  display: block;
+  font-size: 24px;
+  letter-spacing: 1px;
+}
+
+.category-select {
+  width: 150px; /* Largeur de la sélection des catégories */
+  height: 40px; /* Hauteur de la sélection */
+  margin-right: 0; /* Pas d'espacement */
+}
+
+/* Styles pour la barre de recherche */
+.search-input {
+  width: 200px; /* Largeur de la barre de recherche */
+  height: 40px; /* Hauteur de la barre de recherche */
+  border-radius: 0.5rem; /* Coins arrondis pour l'input */
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  margin-left: 0; /* Pas d'espacement à gauche */
+}
+
+.search-bar button {
+  margin-left: 0.5rem; /* Espacement entre l'input et le bouton */
+}
+
+
+

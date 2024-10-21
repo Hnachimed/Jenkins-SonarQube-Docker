@@ -1,0 +1,105 @@
+<div class="product-details-container container my-5">
+  <!-- Titre et catégorie du produit -->
+  <div class="product-header text-center">
+    <h1 class="display-4 fw-bold">{{ product.nom }}</h1>
+    <p class="text-muted mb-0">Category: <span class="text-secondary">{{ product.category }}</span></p>
+    <p class="text-muted">Brand: <span class="text-secondary">{{ product.brand }}</span></p>
+  </div>
+
+  <div class="row mt-4">
+    <!-- Galerie d'images -->
+    <div class="col-md-6">
+      <div id="imageCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item" *ngFor="let image of product.images; let i = index" [ngClass]="{'active': i === activeImageIndex}">
+            <img [src]="image" class="d-block w-100" alt="{{ product.nom }}">
+          </div>
+        </div>
+        <!-- Contrôles pour le carrousel -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#imageCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#imageCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+      <!-- Liste des miniatures -->
+      <div class="thumbnail-list mt-3 d-flex justify-content-center">
+        <img *ngFor="let image of product.images; let i = index"
+             [src]="image"
+             alt="{{ product.nom }}"
+             class="thumbnail-image mx-1"
+             (click)="changeMainImage(i)">
+      </div>
+    </div>
+
+    <!-- Informations sur le produit -->
+    <div class="col-md-6">
+      <div class="product-info">
+        <p class="price display-6 text-success">Price: {{ product.price | currency }}</p>
+        <p class="discount text-danger">Discount: {{ product.discountPercentage }}%</p>
+        <p class="rating">Rating: {{ product.rating }} / 5</p>
+        <p class="availability">Availability: <span [ngClass]="{'text-success': product.availabilityStatus === 'In Stock', 'text-danger': product.availabilityStatus !== 'In Stock'}">{{ product.availabilityStatus }}</span></p>
+        <p class="stock" [ngClass]="{'text-danger': product.stock <= 5, 'text-success': product.stock > 5}">Stock: {{ product.stock }} units available</p>
+        <p class="sku">SKU: {{ product.sku }}</p>
+        <p class="warranty">Warranty: {{ product.warrantyInformation }}</p>
+        <p class="shipping">Shipping: {{ product.shippingInformation }}</p>
+        <p class="return-policy">Return Policy: {{ product.returnPolicy }}</p>
+        <p class="min-order">Minimum Order Quantity: {{ product.minimumOrderQuantity }}</p>
+        <p class="dimensions">Dimensions: {{ product.dimensions.width }} x {{ product.dimensions.height }} x {{ product.dimensions.depth }} cm</p>
+        <p class="weight">Weight: {{ product.weight }} g</p>
+      </div>
+      <!-- Bouton d'achat -->
+      <button (click)="addToPanier(product)"
+              class="btn btn-primary btn-lg mt-3 w-100"
+              [disabled]="product.stock <= 0"> <!-- Désactiver le bouton si le stock est épuisé -->
+        Add to Cart
+      </button>
+    </div>
+  </div>
+
+  <!-- Description du produit -->
+  <div class="product-description mt-5">
+    <h2 class="fw-bold">Description</h2>
+    <p>{{ product.description }}</p>
+  </div>
+
+  <!-- Avis des clients -->
+  <div class="product-reviews mt-5">
+    <h2 class="fw-bold">Customer Reviews</h2>
+    <div *ngIf="product.reviews.length > 0; else noReviews">
+      <div *ngFor="let review of product.reviews" class="review-item border-bottom py-3">
+        <p class="reviewer-name fw-bold">{{ review.reviewerName }}</p>
+        <p class="review-rating">Rating: {{ review.rating }} / 5</p>
+        <p class="review-date text-muted">{{ review.date | date:'mediumDate' }}</p>
+        <p class="review-comment">{{ review.comment }}</p>
+      </div>
+    </div>
+    <ng-template #noReviews>
+      <p class="text-muted">No reviews yet. Be the first to review this product!</p>
+    </ng-template>
+  </div>
+
+  <!-- Formulaire pour ajouter un commentaire -->
+  <div class="add-review mt-5">
+    <h2 class="fw-bold">Add Your Review</h2>
+    <form (ngSubmit)="submitReview()">
+      <div class="mb-3">
+        <label for="reviewerName" class="form-label">Your Name</label>
+        <input type="text" id="reviewerName" class="form-control" [(ngModel)]="newReview.reviewerName" name="reviewerName" required>
+      </div>
+      <div class="mb-3">
+        <label for="reviewRating" class="form-label">Rating (1-5)</label>
+        <input type="number" id="reviewRating" class="form-control" [(ngModel)]="newReview.rating" name="reviewRating" min="1" max="5" required>
+      </div>
+      <div class="mb-3">
+        <label for="reviewComment" class="form-label">Comment</label>
+        <textarea id="reviewComment" class="form-control" [(ngModel)]="newReview.comment" name="reviewComment" rows="3" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="!newReview.reviewerName || !newReview.rating || !newReview.comment">Submit Review</button>
+    </form>
+  </div>
+
+</div>

@@ -1,0 +1,40 @@
+.login-container{
+  margin-top: 300px;
+  margin-bottom: 250px;
+  background-color: rgba(255, 255, 255, 0.9);
+
+}
+/* Style du fond de la page de connexion */
+.login-page {
+  background: url('https://source.unsplash.com/random/1920x1080?abstract') no-repeat center center fixed;
+  background-size: cover;
+}
+
+/* Styles supplémentaires pour les champs de saisie */
+.form-control {
+  border: 2px solid #e3e3e3;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-control:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.25);
+}
+
+/* Bouton personnalisé */
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+/* Lien "Mot de passe oublié" */
+a.text-muted:hover {
+  color: #0056b3;
+  text-decoration: none;
+}

@@ -1,0 +1,36 @@
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Votre Panier</h2>
+  <table class="table table-bordered table-hover">
+    <thead class="thead-light">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Prix Unitaire</th>
+      <th scope="col">Quantité</th>
+      <th scope="col">Prix Total</th>
+      <th scope="col">Actions</th> <!-- Colonne pour les actions -->
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let panier of lignePanier; let i = index">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>{{ panier.produit.nom }}</td>
+      <td>{{ panier.produit.price | currency: 'EUR' }}</td>
+      <td>{{ panier.qte }}</td>
+      <td>{{ panier.produit.price * panier.qte | currency: 'EUR' }}</td>
+      <td>
+        <button (click)="removeFromPanier(panier)" class="btn btn-danger btn-sm">Supprimer</button> <!-- Bouton pour supprimer -->
+      </td>
+    </tr>
+    <tr>
+      <td colspan="4" class="text-right"><strong>Prix Total :</strong></td>
+      <td>{{ calculerPrixTotal() | currency: 'EUR' }}</td>
+      <td></td> <!-- Cellule vide pour l'alignement -->
+    </tr>
+    </tbody>
+  </table>
+
+  <div class="text-center">
+    <button class="btn btn-warning" (click)="viderPanier()">Vider le Panier</button>
+  </div>
+</div>
